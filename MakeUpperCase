@@ -1,0 +1,22 @@
+Write a function which converts the input string to uppercase.
+
+=======================================================================
+
+
+#include <string>
+using namespace std;
+string makeUpperCase (const string& s)
+{
+  int len =  s.size();
+  string oris = s;
+  string lowstring;
+  for(int i=0 ; i<len ; i++){
+    if(oris[i]>='a' && oris[i]<= 'z'){
+      oris[i] -= 32;
+    }else{
+      oris[i] +=0;
+    }
+  }
+  lowstring = oris;
+  return lowstring;
+}
