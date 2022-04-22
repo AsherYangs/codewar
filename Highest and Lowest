@@ -1,0 +1,53 @@
+In this little assignment you are given a string of space separated numbers, and have to return the highest and lowest number.
+
+Examples
+highAndLow("1 2 3 4 5");  // return "5 1"
+highAndLow("1 2 -3 4 5"); // return "5 -3"
+highAndLow("1 9 3 4 -5"); // return "9 -5"
+
+============================================================================================
+
+#include <string>
+using namespace std;
+string highAndLow(const string& numbers){
+  string s1 = numbers;
+  string t2 = " ";
+
+  int count = 0; //先計算,有幾個
+  size_t startp = 0;
+  do{
+    size_t t3 = s1.find(t2 , startp);
+    if(t3 == string::npos){
+      break;
+    }
+    count++;
+    startp = t3 + t2.size() ; //找到第一次之後從找到值的位置+取代的字串長度開始找
+  }while(true);
+  
+  startp = 0;
+  int arrint[count+1];
+  for(int i =0;i<=count;i++){  //以,分割
+    size_t t3 = s1.find(t2 , startp);
+    arrint[i] = stoi(s1.substr(startp),&startp);
+    startp = t3 + t2.size() ;
+  }
+  
+  int small = 0;
+  int big = 0;
+  for(int i=1;i<count+1;i++){
+    if(arrint[small]>arrint[i]){
+      small = i;
+    }
+    if(arrint[big]<arrint[i]){
+      big = i;
+    }
+  }
+  
+  string f1 = to_string(arrint[big]);
+  string f2 = to_string(arrint[small]);
+  string f3 = " ";
+  string f4 = f1+f3+f2;
+  return f4;
+  
+  
+}
