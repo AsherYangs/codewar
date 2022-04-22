@@ -1,0 +1,54 @@
+Our football team finished the championship. The result of each match look like "x:y". Results of all matches are recorded in the collection.
+
+For example: ["3:1", "2:2", "0:1", ...]
+
+Write a function that takes such collection and counts the points of our team in the championship. Rules for counting points for each match:
+
+if x > y: 3 points
+if x < y: 0 point
+if x = y: 1 point
+Notes:
+
+there are 10 matches in the championship
+0 <= x <= 4
+0 <= y <= 4
+
+========================================================================================================
+
+#include <array>
+#include <string>
+using namespace std;
+
+int points(const array<string, 10> & games) {
+    int total = 0;
+    string s2=",";
+    string arrstr[10];
+    int startp = 0;
+  
+    for(int i=0;i<10;i++){
+      arrstr[i] = games[i];
+    }
+  
+    string s4 = ":";
+    for(int i =0;i<10;i++){  //以,分割
+      int * a = new int;
+      int * b = new int;
+      size_t t3 = arrstr[i].find(s4 , startp);
+      *a = stoi(arrstr[i].substr(startp,t3));
+      *b = stoi(arrstr[i].substr(t3+1));
+      
+      if(*a>*b){
+        total+=3;
+      }else if(*a<*b){
+        total +=0;
+      }else{
+        total+=1;
+      }
+      
+      delete a;
+      delete b;
+    }
+  
+  
+    return total;
+}
