@@ -1,0 +1,36 @@
+An isogram is a word that has no repeating letters, consecutive or non-consecutive. 
+Implement a function that determines whether a string that contains only letters is an isogram. 
+Assume the empty string is an isogram. Ignore letter case.
+
+example:
+"Dermatoglyphics" --> true
+"aba" --> false
+"moOse" --> false (ignore letter case)
+
+================================================================================================================
+
+#include <iostream>
+#include <string>
+#include <cctype>
+using namespace std;
+
+bool is_isogram(string s1) {
+  int a[256] = {0};
+  size_t len = s1.length();  //5
+  const char * ptr = s1.c_str();
+  for(size_t i=0 ; i<len ; i++){
+    s1[i] = toupper(*(ptr+i));
+  }
+  for(size_t i=0 ; i<len ; i++){
+    cout<<s1[i];
+  }
+  for(size_t i=0 ; i<len ; i++){
+    int x = s1[i];
+    a[x]++;
+    if(a[x]>1){
+      return false;
+    }
+  }
+  
+  return true;
+}
